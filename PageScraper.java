@@ -29,32 +29,30 @@ public class PageScraper extends GUI {
 		int count = 0;
 		try {
 			Document doc = Jsoup.connect(url).get();
-	        Elements images = doc.select("img[src~=(?i)\\.(png|jpe?g|gif)]");
-	        System.out.println("Connected");
-	        for (Element image : images) {
-	       	 
-	       	 String imglink = image.attr("src");
-	            if (imglink.contains("jpeg")) {
-	           	 imglink = imglink.substring(0, imglink.indexOf("jpeg")+4);
-	            }
-	            else if (imglink.contains("jpg")) {
-	           	 imglink = imglink.substring(0, imglink.indexOf("jpg")+3);
-	            }
-	            else if (imglink.contains("png")) {
-	           	 imglink = imglink.substring(0, imglink.indexOf("png")+3); 
-	            }
-	            else if (imglink.contains("gif")) {
-	           	 imglink = imglink.substring(0, imglink.indexOf("gif")+3);
-	            }
-	          	 System.out.println("\nsrc : " + imglink);
-	             
-	             downloadImage(imglink, folder);
-	             
-	             count++;
-	        }
-	      
-        }
-		 catch(IOException e) {
+			Elements images = doc.select("img[src~=(?i)\\.(png|jpe?g|gif)]");
+			System.out.println("Connected");
+			for (Element image : images) {
+
+			 String imglink = image.attr("src");
+			    if (imglink.contains("jpeg")) {
+				 imglink = imglink.substring(0, imglink.indexOf("jpeg")+4);
+			    }
+			    else if (imglink.contains("jpg")) {
+				 imglink = imglink.substring(0, imglink.indexOf("jpg")+3);
+			    }
+			    else if (imglink.contains("png")) {
+				 imglink = imglink.substring(0, imglink.indexOf("png")+3); 
+			    }
+			    else if (imglink.contains("gif")) {
+				 imglink = imglink.substring(0, imglink.indexOf("gif")+3);
+			    }
+				 System.out.println("\nsrc : " + imglink);
+
+			     downloadImage(imglink, folder);
+
+			     count++;
+			}
+        	} catch(IOException e) {
 //	        	e.printStackTrace();
 			 System.out.println("F");
 		 }
